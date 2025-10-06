@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>HealthyLiving — 毎日のウェルネス</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --accent-1:#2e8b57;
+    --accent-2:#1ca9c9;
+    --accent-3:#7fd1ae;
+    --muted:#6b7280;
+    --bg:#fefefe;
+    --card:#ffffff;
+    --radius:12px;
+  }
+  *{box-sizing:border-box; transition: all .3s ease;}
+  body{
+    margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;
+    background:var(--bg); color:#111;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  header{
+    position:sticky; top:0; z-index:40;
+    background:linear-gradient(90deg,#e7f8f1,#f0fdfd);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid #e6f4ef;
+  }
+  .container{max-width:1100px; margin:0 auto; padding:20px;}
+  .nav{display:flex; align-items:center; gap:18px; justify-content:space-between;}
+  .brand{display:flex;align-items:center; gap:12px;}
+  .logo {
+    width:44px;height:44px;border-radius:10px;display:grid;place-items:center;
+    background:linear-gradient(135deg,var(--accent-1),var(--accent-2));
+    color:white;font-weight:700;font-size:18px;box-shadow:0 6px 18px rgba(46,139,87,0.18);
+  }
+  .sitename{font-weight:700;font-size:18px;color:var(--accent-1);}
+  nav ul{display:flex; gap:12px; list-style:none; margin:0; padding:0;}
+  nav a{padding:8px 12px; border-radius:8px; text-decoration:none; color:var(--muted); font-weight:600;}
+  nav a:hover{background:#e7f8f1; color:#0f1720}
+
+  /* Hero */
+  .hero{display:flex; align-items:center; gap:28px; padding:36px 0;}
+  .hero-left{flex:1}
+  .hero-right{width:300px}
+  .hero h1{font-size:34px; margin:0 0 8px; color:#045f4b}
+  .hero p{color:var(--muted); margin:0 0 18px}
+  .cta{display:inline-flex; gap:10px; align-items:center; padding:10px 14px; border-radius:10px;
+    background:linear-gradient(90deg,#2e8b57,#1ca9c9); color:white; font-weight:700; text-decoration:none;
+    box-shadow:0 4px 10px rgba(46,139,87,0.2);}
+  .cta:hover{transform:translateY(-2px); box-shadow:0 8px 20px rgba(28,169,201,0.3);}
+
+  /* Categories */
+  .cats{display:flex; gap:12px; margin-top:18px;}
+  .cat{
+    flex:1; background:var(--card); border-radius:12px; padding:14px; display:flex; gap:12px; align-items:center; cursor:pointer;
+    box-shadow:0 6px 18px rgba(16,24,40,0.04);
+  }
+  .cat:hover{transform:translateY(-6px); box-shadow:0 12px 30px rgba(16,24,40,0.08);}
+  .icon-wrap{width:48px;height:48px;border-radius:10px; display:grid; place-items:center;}
+  .icon-wrap svg{width:26px;height:26px;fill:white;}
+  .cat h4{margin:0;font-size:16px}
+  .cat p{margin:0;color:var(--muted); font-size:13px}
+
+  section{padding:28px 0; border-top:1px solid #f0f0f0;}
+  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px}
+  .card{background:white;border-radius:12px;padding:18px; box-shadow:0 6px 18px rgba(15,23,42,0.05); border:1px solid #f4f4f4}
+  .card:hover{transform:translateY(-4px); box-shadow:0 10px 24px rgba(15,23,42,0.08);}
+  .small{font-size:13px; color:var(--muted)}
+  .post-title{font-weight:700; margin:8px 0 6px}
+  .btn{display:inline-block;padding:8px 12px;border-radius:10px;text-decoration:none;font-weight:700;background:#e7f8f1;color:#045f4b;}
+  .btn:hover{background:linear-gradient(90deg,#2e8b57,#1ca9c9);color:white;}
+
+  /* Section Backgrounds */
+  #nutrition{background:linear-gradient(180deg,#e9f9f1,#fefefe);}
+  #fitness{background:linear-gradient(180deg,#e6f8fb,#ffffff);}
+  #mindfulness{background:linear-gradient(180deg,#f0f9f9,#ffffff);}
+  #blog{background:linear-gradient(180deg,#f8fcf9,#ffffff);}
+  #contact{background:linear-gradient(180deg,#eafaf3,#ffffff);}
+
+  #backTop{
+    position:fixed; right:20px; bottom:22px; z-index:80;
+    width:48px;height:48px;border-radius:14px; display:grid; place-items:center; cursor:pointer;
+    box-shadow:0 10px 28px rgba(15,23,42,0.15);
+    background:linear-gradient(135deg,#2e8b57,#1ca9c9); color:white; border:0; outline:0;
+  }
+  #backTop:hover{transform:translateY(-3px); box-shadow:0 14px 34px rgba(28,169,201,0.3);}
+
+  footer{padding:36px 0; border-top:1px solid #e6f4ef; color:var(--muted);
+    background:linear-gradient(90deg,#f0fdfd,#e7f8f1);}
+  .flex{display:flex; gap:12px; align-items:center; justify-content:space-between;}
+
+  @media (max-width:760px){
+    .hero{flex-direction:column}
+    .hero-right{width:100%}
+    nav ul{display:none}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">HL</div>
+      <div>
+        <div class="sitename">HealthyLiving</div>
+        <div class="small">毎日のウェルネス</div>
+      </div>
+    </div>
+
+    <nav aria-label="メインナビゲーション">
+      <ul>
+        <li><a href="#home">ホーム</a></li>
+        <li><a href="#nutrition">栄養</a></li>
+        <li><a href="#fitness">フィットネス</a></li>
+        <li><a href="#mindfulness">マインドフルネス</a></li>
+        <li><a href="#blog">ブログ</a></li>
+        <li><a href="#contact">お問い合わせ</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="container" id="home">
+  <div class="hero">
+    <div class="hero-left">
+      <h1>小さな習慣。大きなウェルネス。</h1>
+      <p>栄養、フィットネス、マインドフルな生活のための短く実用的なガイド — 忙しい人向け。</p>
+      <a class="cta" href="#nutrition">栄養を探る</a>
+
+      <div class="cats">
+        <div class="cat" onclick="scrollToId('nutrition')">
+          <div class="icon-wrap" style="background:linear-gradient(135deg,#5dbb89,#2e8b57)">
+            <svg viewBox="0 0 24 24"><path d="M12 2C10.07 2 8.28 3.05 7.38 4.76L6.06 7.3C5.22 8.84 4 10.23 4 12c0 3.31 2.69 6 6 6s6-2.69 6-6c0-1.77-1.22-3.16-2.06-4.7L13.62 4.76C12.72 3.05 10.93 2 9 2z"/></svg>
+          </div>
+          <div><h4>栄養</h4><p>レシピ、食事プラン & ヒント</p></div>
+        </div>
+
+        <div class="cat" onclick="scrollToId('fitness')">
+          <div class="icon-wrap" style="background:linear-gradient(135deg,#68c4dc,#1ca9c9)">
+            <svg viewBox="0 0 24 24"><path d="M13 2l-1 2-2 1 2 2-1 2 2-1 2 1-1-2 2-2-2-1-1-2zM4 13l1 4h2l1-3h2l1 3h2l1-4-3-3H7l-3 3zM17 13l-1 4h2l1-3h2l1 3h2l-1-4-3-3h-1l-3 3z"/></svg>
+          </div>
+          <div><h4>フィットネス</h4><p>ワークアウト & 進捗プラン</p></div>
+        </div>
+
+        <div class="cat" onclick="scrollToId('mindfulness')">
+          <div class="icon-wrap" style="background:linear-gradient(135deg,#88d1cf,#0fa3b1)">
+            <svg viewBox="0 0 24 24"><path d="M12 4a8 8 0 018 8 8 8 0 01-8 8 8 8 0 010-16zm0 3a5 5 0 100 10 5 5 0 000-10z"/></svg>
+          </div>
+          <div><h4>マインドフルネス</h4><p>瞑想 & ストレス解消</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="card">
+        <div class="small">注目</div>
+        <div class="post-title">穏やかな一日のための朝の簡単ルーティン3選</div>
+        <p class="small">シンプルなステップで穏やかに目覚める — 道具不要。</p>
+        <div style="margin-top:12px"><a class="btn" href="#blog">読む</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nutrition -->
+  <section id="nutrition" aria-labelledby="nutritionHeading">
+    <h2 id="nutritionHeading">栄養</h2>
+    <p class="small">シンプルなレシピとバランスの良い食事アイデア。</p>
+    <div class="grid">
+      <article class="card"><div class="small">レシピ</div><div class="post-title">オーバーナイトオーツ — ベリーブースト</div><p class="small">準備5分。高繊維 & 持ち運び可能。</p></article>
+      <article class="card"><div class="small">ガイド</div><div class="post-title">忙しい日のためのプレートバランス</div><p class="small">考えすぎずに満足できる食事の作り方。</p></article>
+      <article class="card"><div class="small">ヒント</div><div class="post-title">水分補給のコツ</div><p class="small">日中もっと水を飲むための小さな工夫。</p></article>
+    </div>
+  </section>
+
+  <!-- Fitness -->
+  <section id="fitness" aria-labelledby="fitnessHeading">
+    <h2 id="fitnessHeading">フィットネス</h2>
+    <p class="small">短時間のワークアウトとモビリティルーティン。</p>
+    <div class="grid">
+      <div class="card"><div class="small">プラン</div><div class="post-title">12分 全身</div><p class="small">器具不要、どこでも実施可能。</p></div>
+      <div class="card"><div class="small">方法</div><div class="post-title">デスクストレッチ</div><p class="small">仕事中に簡単に緊張をほぐす。</p></div>
+      <div class="card"><div class="small">プログラム</div><div class="post-title">初心者向け筋力</div><p class="small">週3回のセッション。</p></div>
+    </div>
+  </section>
+
+  <!-- Mindfulness -->
+  <section id="mindfulness" aria-labelledby="mindHeading">
+    <h2 id="mindHeading">マインドフルネス</h2>
+    <p class="small">ストレスを減らし集中力を高めるガイド付き実践。</p>
+    <div class="grid">
+      <div class="card"><div class="small">実践</div><div class="post-title">5分呼吸アンカー</div><p class="small">心をすぐに落ち着かせる。</p></div>
+      <div class="card"><div class="small">記事</div><div class="post-title">睡眠準備ルーティン</div><p class="small">より良い睡眠のために落ち着く。</p></div>
+      <div class="card"><div class="small">ヒント</div><div class="post-title">マイクロマインドフルモーメント</div><p class="small">日常を意識のある時間に変える。</p></div>
+    </div>
+  </section>
+
+  <!-- Blog -->
+  <section id="blog" aria-labelledby="blogHeading">
+    <h2 id="blogHeading">ブログ</h2>
+    <p class="small">最近の投稿</p>
+    <div class="grid">
+      <article class="card"><div class="small">ウェルネス</div><div class="post-title">なぜルーティンは効果的か</div><p class="small">小さなステップが積み重なる。</p></article>
+      <article class="card"><div class="small">レシピ</div><div class="post-title">グリーンスムージー3種</div><p class="small">健康的で美味しい。</p></article>
+      <article class="card"><div class="small">フィットネス</div><div class="post-title">歩いてフィットネス</div><p class="small">習慣を作る簡単なステップ。</p></article>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" aria-labelledby="contactHeading">
+    <h2 id="contactHeading">お問い合わせ</h2>
+    <p class="small">このフォームはデモです — 送信は機能しません。</p>
+    <div style="max-width:720px;">
+      <form onsubmit="event.preventDefault(); alert('デモ — 送信されません');" style="display:grid; gap:10px;">
+        <input placeholder="お名前" style="padding:12px; border-radius:8px; border:1px solid #eee" />
+        <input placeholder="メール" style="padding:12px; border-radius:8px; border:1px solid #eee" />
+        <textarea placeholder="メッセージ" style="padding:12px; border-radius:8px; border:1px solid #eee" rows="5"></textarea>
+        <button class="btn" type="submit">送信 (デモ)</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="flex">
+      <div>
+        <div style="font-weight:700;color:var(--accent-1)">HealthyLiving</div>
+        <div class="small">非商用デモサイト</div>
+      </div>
+      <div class="small">© HealthyLiving — デモ</div>
+    </div>
+  </footer>
+</main>
+
+<button id="backTop" title="トップへ戻る" onclick="scrollToTop()">↑</button>
+
+<script>
+  function scrollToId(id){
+    const el=document.getElementById(id);
+    if(!el) return;
+    el.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'});}
+  document.addEventListener('keydown',function(e){
